@@ -1,6 +1,5 @@
 
 import { styled, useTheme } from '@mui/material/styles';
-import { makeStyles } from '@mui/styles';
 import Box from '@mui/material/Box';
 import Drawer from '@mui/material/Drawer';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -22,6 +21,7 @@ import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import OrderList from '../Orders/OrderList'
+import classes from './Layout.module.css';
 const drawerWidth = 240;
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -65,26 +65,9 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: 'flex-end',
 }));
-const useStyles = makeStyles(theme => ({
-  rightToolbar: {
-    marginLeft: "auto",
-    marginRight: -12
-  },
-  menuButton: {
-    marginRight: 16,
-    marginLeft: -12
-  },
-  menuItemIcon: {
-    color: '#97c05c',
-  },
-  link: {
-    textDecoration: 'none',
-    color: theme.palette.text.primary
-  }
-}))
 
 const Layout = () => {
-  const classes = useStyles()
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -111,7 +94,7 @@ const Layout = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            SIGOM-REACT
+            SHIPPING-REACT
           </Typography>
           <section className={classes.rightToolbar}>
             <IconButton color="inherit" aria-label="Ordenes">

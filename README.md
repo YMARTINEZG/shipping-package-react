@@ -7,9 +7,11 @@
 ## Router
 ## Axios
 ## Redux
+## Slice
 ## Drawer
-## Authentication
+## functional components
+## Material UI
 ## .env
 ## Docker image build
 ## Github deployment
-
+## keycloak authentication
