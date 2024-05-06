@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import {useEffect} from 'react';
+import Layout from './components/Layout/Layout';
+import { ThemeProvider } from "@mui/styles";
+import { blue, green} from '@mui/material/colors';
+import { createTheme } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchOrderData } from './store/shipping-actions';
+
+export const theme = createTheme({
+  palette: {
+    primary: blue,
+    secondary: green
+  }
+});
+
+let isInitial = true;
 
 function App() {
+
+  const dispatch = useDispatch();
+  const shipping = useSelector((state) => state.shipping);
+
+  useEffect(() => {
+    dispatch(fetchOrderData());
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isInitial) {
+      isInitial = false;
+      return;
+    }
+  }, [shipping, dispatch]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className="main-container">
+       <ThemeProvider theme={theme}>
+         <Layout />
+       </ThemeProvider>
+      </div>
   );
 }
 
